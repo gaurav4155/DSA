@@ -16,12 +16,8 @@ public:
             charmap[s[i]]=t[i];
             mp[t[i]]=s[i];
         }
-        int a=charmap.size();
-        int b=mp.size();
-        if(a==b){
-            return true;
-        }
-        return false;
+        
+        return true;
 
 
         
