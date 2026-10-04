@@ -1,19 +1,32 @@
 class Solution {
 public:
-    int countPrimes(int n) {
-        if(n<=2) return 0;
-        int cnt = n-2;
-        vector<char> s(n, 1);
-        for(int i = 2 ; i*i < n ; i++ ){
-            if(s[i]) {
-                for(int j = i*i; j<n; j+=i){
-                    if(s[j]){
-                        s[j] = 0;
-                        cnt--;
-                    }
-                }
+    static int prime[5000002];
+
+    static int init;
+
+    int countPrimes(int n) { return n == 0 ? 0 : prime[n - 1]; }
+};
+
+int Solution::prime[5000002];
+
+int Solution::init = []() {
+    for (int i = 0; i <= 5000001; i++) {
+        prime[i] = 1;
+    }
+
+    prime[0] = prime[1] = 0;
+
+    for (int i = 2; i * i <= 5000001; i++) {
+        if (prime[i]) {
+            for (int j = i * i; j <= 5000001; j += i) {
+                prime[j] = 0;
             }
         }
-        return cnt;
     }
-};
+
+    for (int i = 1; i <= 5000001; i++) {
+        prime[i] += prime[i - 1];
+    }
+
+    return 0;
+}();
