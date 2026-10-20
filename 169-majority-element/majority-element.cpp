@@ -1,25 +1,21 @@
+#include<bits/stdc++.h>
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        int n=nums.size();
-        int count=1;
-        
-        for( int i=0;i<n-1;i++){
-            if( nums[i+1]==nums[i]){
+         int el = 0, count = 0;
+
+        // find candidate
+        for(int i=0;i<nums.size();i++){
+            if(count == 0)
+                el = nums[i];
+
+            if(nums[i] == el)
                 count++;
-                            if(count>n/2){
-                return nums[i];
-            }
-                
-
-            }
-
-            else{
-                count=1;
-            }
+            else
+                count--;
         }
-        return nums[0];
-        
+
+        return el;  // 
+      
     }
 };
