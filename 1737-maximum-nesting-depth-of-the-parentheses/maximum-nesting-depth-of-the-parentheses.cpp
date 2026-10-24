@@ -1,6 +1,7 @@
 class Solution {
 public:
     int maxDepth(string s) {
+        
         int n=s.size();
         int countleft=0;
         int countright=0;
